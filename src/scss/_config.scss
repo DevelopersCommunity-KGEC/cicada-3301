@@ -1,0 +1,77 @@
+:root {
+  /* Base Size */
+  --base-size: 1rem;
+
+  /* Size Scale */
+  --size-300: calc(var(--base-size) * 0.8);
+  --size-350: calc(var(--base-size) * 0.9);
+  --size-400: var(--base-size);
+  --size-450: calc(var(--base-size) * 1.2);
+  --size-500: calc(var(--base-size) * 1.33);
+  --size-550: calc(var(--base-size) * 1.5);
+  --size-600: calc(var(--base-size) * 1.77);
+  --size-650: calc(var(--base-size) * 2);
+  --size-700: calc(var(--base-size) * 2.4);
+  --size-750: calc(var(--base-size) * 2.8);
+  --size-800: calc(var(--base-size) * 3.2);
+  --size-850: calc(var(--base-size) * 3.8);
+  --size-900: calc(var(--base-size) * 4.26);
+  --size-950: calc(var(--base-size) * 4.8);
+  --size-1000: calc(var(--base-size) * 5.68);
+  --size-1050: calc(var(--base-size) * 6.4);
+  --size-1100: calc(var(--base-size) * 7.57);
+
+  /* Colors - Light Mode */
+  /**
+   * TODO: Add light mode color palette in future
+  */
+  --clr-background: #030303;
+  --clr-foreground: #141414;
+  --clr-primary: #97c896;
+  --clr-secondary: #015ae6;
+  --clr-text-neutral: #ffffff;
+  --clr-text-primary: #cccccc;
+  --clr-text-secondary: #5a5c60;
+  --clr-action-warning: #bda900;
+  --clr-action-error: #b50038;
+  --clr-action-success: #009c42;
+
+  /**
+   * Font Weights
+   * these are totally dependent on the tupe of font used from next/fonts
+   * currently I will be using Roboto
+   */
+  --font-weight-100: 100;
+  --font-weight-200: 200;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-weight-900: 900;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-background: #030303;
+    --clr-foreground: #141414;
+    --clr-primary: #97c896;
+    --clr-secondary: #015ae6;
+    --clr-text-neutral: #ffffff;
+    --clr-text-primary: #cccccc;
+    --clr-text-secondary: #5a5c60;
+    --clr-action-warning: #bda900;
+    --clr-action-error: #b50038;
+    --clr-action-success: #009c42;
+  }
+}
+
+/**
+ * Support for light-dark in css
+ * 
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark
+ * 
+ * Light dark theme using SCSS map
+ * 
+ * https://stackoverflow.com/questions/57017955/is-there-a-way-to-add-dark-mode-to-my-application-with-scss
+ */
