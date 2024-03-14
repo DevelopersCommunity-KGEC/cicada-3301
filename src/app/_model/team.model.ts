@@ -1,7 +1,5 @@
 import mongoose, { model, Model, Schema, Types } from 'mongoose';
 
-import { TeamProps } from '../_validation_schema/api/user/userValidation';
-
 interface IMember {
   name: string;
   espektroId: string;
@@ -11,7 +9,8 @@ interface IStage {
   stageId: Types.ObjectId;
   timeStamp: Date;
 }
-interface ITeam extends TeamProps {
+interface ITeam {
+  teamName: string;
   teamId: string;
   members?: Types.Array<IMember>;
   totalPointScored?: number;
@@ -30,12 +29,6 @@ const teamSchema = new Schema<ITeam>(
       required: true,
       min: 3,
       max: 50,
-    },
-    noOfMembers: {
-      type: Number,
-      required: true,
-      min: 1,
-      max: 3,
     },
     members: [
       {

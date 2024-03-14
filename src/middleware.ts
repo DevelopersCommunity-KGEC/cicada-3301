@@ -17,13 +17,14 @@ export async function middleware(request: NextRequest) {
   }
 
   const payload = await jose.jwtVerify(authToken, secret);
+
   if (!payload) {
     return NextResponse.json(
       { message: 'Unauthorized' },
       { status: StatusCode.UNAUTHORIZED, statusText: 'Unauthorized' }
     );
   }
-  request.cookies.set('decoded-user', JSON.stringify(payload));
+  response.headers.set('Set-user', JSON.stringify(payload));
 
   return response;
 }

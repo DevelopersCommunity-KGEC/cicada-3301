@@ -5,14 +5,13 @@ import databaseConnect from '@/app/api/database';
 export async function GET(req: NextRequest) {
   try {
     await databaseConnect();
-    const cookies = req.cookies;
-    const payload = cookies.get('decoded-user');
+    const payload = req.headers.get('Set-user');
     if (!payload) {
       return NextResponse.json({
         message: 'Unauthorized',
       });
     }
-    const user = JSON.parse(payload.value);
+    const user = JSON.parse(payload);
     return NextResponse.json({
       message: 'Welcome to instructions',
       user,
