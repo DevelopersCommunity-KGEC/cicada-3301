@@ -1,4 +1,4 @@
-import mongoose, { model, Schema, Types } from 'mongoose';
+import mongoose, { model, Model, Schema, Types } from 'mongoose';
 
 import { TeamProps } from '../_validation_schema/api/user/userValidation';
 
@@ -96,5 +96,6 @@ const teamSchema = new Schema<ITeam>(
   }
 );
 
-const TeamModel = mongoose.model.Team || model<ITeam>('Team', teamSchema);
+const TeamModel: Model<ITeam> =
+  mongoose.models.Team ?? model<ITeam>('Team', teamSchema);
 export default TeamModel;
