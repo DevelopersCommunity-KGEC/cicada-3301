@@ -54,9 +54,15 @@ export async function POST(req: NextRequest) {
       }
     );
   } catch (error) {
-    return NextResponse.json({
-      message: 'An error occurred while processing your request.',
-      description: JSON.stringify(error),
-    });
+    return NextResponse.json(
+      {
+        message: 'An error occurred while processing your request.',
+        description: JSON.stringify(error),
+      },
+      {
+        status: StatusCode.INTERNAL_SERVER_ERROR,
+        statusText: 'server error',
+      }
+    );
   }
 }
