@@ -31,23 +31,6 @@ const teamSchema = new Schema<ITeam>(
       min: 3,
       max: 50,
     },
-    teamLeader: {
-      type: String,
-      required: true,
-      min: 3,
-      max: 50,
-    },
-    teamLeaderEspektroId: {
-      type: String,
-      required: true,
-      min: 5,
-    },
-    college: {
-      type: String,
-      required: true,
-      min: 3,
-      max: 50,
-    },
     noOfMembers: {
       type: Number,
       required: true,

@@ -30,8 +30,16 @@ export async function POST(req: NextRequest) {
     }
     const generatedTeamId = generateUniqueString();
     const team = new TeamModel({
-      ...body,
+      teamName: body.teamName,
+      noOfMembers: body.noOfMembers,
       teamId: generatedTeamId,
+      members: [
+        {
+          name: body.name,
+          espektroId: body.espektroId,
+          college: body.college,
+        },
+      ],
     });
     await team.save();
 
