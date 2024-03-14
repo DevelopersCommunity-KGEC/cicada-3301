@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { v4 } from 'uuid';
 
 import TeamModel from '@/app/_model/team.model';
 import { StatusCode } from '@/app/_utils/types';
 import { CreateTeamSchema } from '@/app/_validation_schema/api/user/userValidation';
 import databaseConnect from '@/app/api/database';
+
+function generateUniqueString() {
+  const generatedUUID = v4();
+  const shortString = generatedUUID.substring(0, 6);
+  return shortString;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,12 +28,17 @@ export async function POST(req: NextRequest) {
         }
       );
     }
-    const team = new TeamModel(body);
+    const generatedTeamId = generateUniqueString();
+    const team = new TeamModel({
+      ...body,
+      teamId: generatedTeamId,
+    });
     await team.save();
 
     return NextResponse.json(
       {
         message: 'team registered successfully',
+        teamId: generatedTeamId,
       },
       {
         status: StatusCode.CREATED,

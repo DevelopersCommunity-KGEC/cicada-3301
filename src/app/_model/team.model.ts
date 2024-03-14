@@ -1,4 +1,4 @@
-import { model, Schema, Types } from 'mongoose';
+import mongoose, { model, Schema, Types } from 'mongoose';
 
 import { TeamProps } from '../_validation_schema/api/user/userValidation';
 
@@ -12,6 +12,7 @@ interface IStage {
   timeStamp: Date;
 }
 interface ITeam extends TeamProps {
+  teamId: string;
   members?: Types.Array<IMember>;
   totalPointScored?: number;
   noOfStagesAttempted?: number;
@@ -19,6 +20,11 @@ interface ITeam extends TeamProps {
 }
 const teamSchema = new Schema<ITeam>(
   {
+    teamId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     teamName: {
       type: String,
       required: true,
@@ -90,5 +96,5 @@ const teamSchema = new Schema<ITeam>(
   }
 );
 
-const TeamModel = model<ITeam>('Team', teamSchema);
+const TeamModel = mongoose.model.Team || model<ITeam>('Team', teamSchema);
 export default TeamModel;
