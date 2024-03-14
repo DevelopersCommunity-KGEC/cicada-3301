@@ -14,7 +14,7 @@ const stageSchema = new Schema<IStage>(
       required: true,
     },
     answer: {
-      type: String,
+      type: Schema.Types.Mixed,
       required: true,
     },
     points: {
