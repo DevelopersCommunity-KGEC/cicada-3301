@@ -2,12 +2,7 @@ import mongoose, { model, Model, Schema, Types } from 'mongoose';
 
 interface IQuestion {
   totalPoints: number;
-  stages: [
-    {
-      timeStamp: Date;
-      id: Types.ObjectId;
-    }
-  ];
+  stages: [Types.ObjectId];
 }
 const questionsSchema = new Schema<IQuestion>(
   {
@@ -17,16 +12,8 @@ const questionsSchema = new Schema<IQuestion>(
     },
     stages: [
       {
-        timeStamp: {
-          type: Date,
-          default: Date.now,
-          required: true,
-        },
-        stageId: {
-          type: Schema.Types.ObjectId,
-          ref: 'Stage',
-          required: true,
-        },
+        type: Types.ObjectId,
+        ref: 'Stage',
       },
     ],
   },
