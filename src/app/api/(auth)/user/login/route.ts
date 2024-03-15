@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       },
       `${process.env.SECRET_KEY}`,
       {
-        expiresIn: '3h',
+        expiresIn: '5d',
       }
     );
 
