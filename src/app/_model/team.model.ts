@@ -13,9 +13,11 @@ interface ITeam {
   teamName: string;
   teamId: string;
   members?: Types.Array<IMember>;
-  totalPointScored?: number;
-  noOfStagesAttempted?: number;
-  stages?: Types.Array<IStage>;
+  totalPointScored: number;
+  noOfStagesAttempted: number;
+  stages: Types.Array<IStage>;
+  lastCompletedStage?: Types.ObjectId;
+  totalTokens: number;
 }
 const teamSchema = new Schema<ITeam>(
   {
@@ -42,6 +44,14 @@ const teamSchema = new Schema<ITeam>(
         },
       },
     ],
+    lastCompletedStage: {
+      type: Types.ObjectId,
+      default: null,
+    },
+    totalTokens: {
+      type: Number,
+      default: 10,
+    },
     totalPointScored: {
       type: Number,
       default: 0,
@@ -50,18 +60,21 @@ const teamSchema = new Schema<ITeam>(
       type: Number,
       default: 0,
     },
-    stages: [
-      {
-        stageId: {
-          type: Types.ObjectId,
-          required: true,
+    stages: {
+      type: [
+        {
+          stageId: {
+            type: Types.ObjectId,
+            required: true,
+          },
+          timeStamp: {
+            type: Date,
+            default: Date.now,
+          },
         },
-        timeStamp: {
-          type: Date,
-          default: Date.now,
-        },
-      },
-    ],
+      ],
+      default: [],
+    },
   },
   {
     timestamps: true,
