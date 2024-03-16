@@ -40,10 +40,6 @@ const teamSchema = new Schema<ITeam>(
           type: String,
           required: true,
         },
-        college: {
-          type: String,
-          required: true,
-        },
       },
     ],
     totalPointScored: {

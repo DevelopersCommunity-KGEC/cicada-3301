@@ -39,6 +39,7 @@ export default function RootLayout({
         >
           <CreateTeamContextProvider>{children}</CreateTeamContextProvider>
           <ToastContainer
+            autoClose={3000}
             position="bottom-right"
             stacked
             closeOnClick

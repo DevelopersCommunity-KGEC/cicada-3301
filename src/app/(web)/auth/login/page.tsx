@@ -1,31 +1,37 @@
 'use client';
 import React, { useState } from 'react';
 
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import HoverButton from '@/app/_global_components/HoverButton';
 import CustomInput from '@/app/_global_components/input';
 import HoverLink from '@/app/_global_components/Link';
 
+import { handleLogin } from '../../_api/login';
 import styles from './styles.module.scss';
 
-function Login() {
-  const [teamName, setTeamName] = useState('');
+function Login({}) {
+  const [teamId, setTeamId] = useState('');
   const [espektroId, setEspektroId] = useState('');
-  const notify = () =>
-    toast(
-      <div>
-        <p>Team ID: {teamName}</p>
-        <p>Espektro ID: {espektroId}</p>
-      </div>
-    );
+  const router = useRouter();
+  const notify = ({
+    success,
+    message,
+  }: {
+    success: boolean;
+    message: string;
+  }) =>
+    toast(message, {
+      type: success ? 'success' : 'error',
+    });
 
   return (
     <form className={styles.loginForm} onSubmit={() => {}}>
       <div>
         <CustomInput
           placeholder="Team ID"
-          onChange={(e) => setTeamName(e.target.value)}
+          onChange={(e) => setTeamId(e.target.value)}
         />
         <CustomInput
           placeholder="Espektro ID"
@@ -39,12 +45,12 @@ function Login() {
         </HoverLink>
         <HoverButton
           className={styles.button}
-          onClick={() => {
-            notify();
-            console.log({
-              teamName,
-              espektroId,
-            });
+          onClick={async () => {
+            const res = await handleLogin(teamId, espektroId);
+            notify(res);
+            if (res.success) {
+              router.push('/');
+            }
           }}
         >
           Login

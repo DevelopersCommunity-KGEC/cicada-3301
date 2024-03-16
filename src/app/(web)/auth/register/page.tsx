@@ -1,15 +1,31 @@
 'use client';
 import React, { useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+
 import HoverButton from '@/app/_global_components/HoverButton';
 import CustomInput from '@/app/_global_components/input';
 import { useCreateTeamContext } from '@/app/hooks/context/registerContext';
 
+import { handleRegisterTeam } from '../../_api/register';
 import styles from './styles.module.scss';
 
 function Register() {
   const [memberIds, setMemberIds] = useState([1]);
   const { setTeamName, teamName, members } = useCreateTeamContext();
+  const router = useRouter();
+  const notify = ({
+    success,
+    message,
+  }: {
+    success: boolean;
+    message: string;
+  }) =>
+    toast(message, {
+      type: success ? 'success' : 'error',
+    });
+
   return (
     <form className={styles.registerForm} onSubmit={() => {}}>
       <div className={styles.teamNameContainer}>
@@ -35,7 +51,7 @@ function Register() {
         </HoverButton>
         <HoverButton
           className={styles.button}
-          onClick={() => {
+          onClick={async () => {
             // register team
             const formatedMembers = members.map((member) => {
               return {
@@ -44,10 +60,14 @@ function Register() {
                 // TODO if college is necessary, add it here
               };
             });
-            console.log({
+            const response = await handleRegisterTeam(
               teamName,
-              members: formatedMembers,
-            });
+              formatedMembers
+            );
+            notify(response);
+            if (response.success) {
+              router.push('/auth/login');
+            }
           }}
         >
           Create
