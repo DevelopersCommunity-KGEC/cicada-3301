@@ -1,0 +1,31 @@
+.inputContainer {
+  position: relative;
+  & label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--clr-text-primary);
+    pointer-events: none;
+    transition: 0.5s;
+  }
+  & input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--clr-text-neutral);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid var(--clr-text-primary);
+    outline: none;
+    background: transparent;
+  }
+  & > input:focus ~ label,
+  & > input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: var(--clr-primary);
+    font-size: 12px;
+  }
+}

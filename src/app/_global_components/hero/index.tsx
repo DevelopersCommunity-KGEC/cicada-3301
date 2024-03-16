@@ -14,8 +14,8 @@ function Hero() {
         CICADA 3301
       </h1>
       <div className={styles.buttonContainer}>
-        <HoverLink href="/">Login</HoverLink>
-        <HoverLink href="/">Create Team</HoverLink>
+        <HoverLink href="/auth/login">Login</HoverLink>
+        <HoverLink href="/auth/register">Create Team</HoverLink>
       </div>
     </div>
   );

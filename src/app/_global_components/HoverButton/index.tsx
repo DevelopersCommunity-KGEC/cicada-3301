@@ -4,11 +4,19 @@ import React from 'react';
 
 function HoverButton({
   children,
-  className,
+  ...defaultButtonProps
 }: {
   children: React.ReactNode;
-  className?: string;
-}) {
-  return <button className={`btn draw-border ${className}`}>{children}</button>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      {...defaultButtonProps}
+      type={defaultButtonProps.type || 'button'}
+      className={`btn draw-border ${defaultButtonProps.className}`}
+      disabled={defaultButtonProps.disabled}
+    >
+      {children}
+    </button>
+  );
 }
 export default HoverButton;
