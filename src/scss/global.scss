@@ -22,3 +22,11 @@
 body {
   background-color: var(--clr-background);
 }
+
+.toast-custom {
+  background: var(--clr-toast);
+  color: var(--clr-text-primary);
+}
+.toast-progress-custom {
+  background: var(--clr-primary);
+}

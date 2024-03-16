@@ -1,7 +1,9 @@
 import '@/scss/global.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 import type { Metadata } from 'next';
 import { Source_Code_Pro } from 'next/font/google';
+import { Slide, ToastContainer } from 'react-toastify';
 
 import { CreateTeamContextProvider } from '../hooks/context/registerContext';
 
@@ -36,6 +38,15 @@ export default function RootLayout({
           }}
         >
           <CreateTeamContextProvider>{children}</CreateTeamContextProvider>
+          <ToastContainer
+            position="bottom-right"
+            stacked
+            closeOnClick
+            transition={Slide}
+            toastClassName={'toast-custom'}
+            progressClassName={'toast-progress-custom'}
+            closeButton={false}
+          />
         </main>
       </body>
     </html>
