@@ -55,7 +55,7 @@ function Login({}) {
             const res = await handleLogin(teamId, espektroId);
             notify(res);
             if (res.success) {
-              router.push('/');
+              router.push('/instructions');
             }
           }}
         >
