@@ -1,6 +1,8 @@
-import './styles.scss';
-
 import React from 'react';
+
+import classnames from 'classnames';
+
+import styles from './styles.module.scss';
 
 function HoverButton({
   children,
@@ -12,7 +14,12 @@ function HoverButton({
     <button
       {...defaultButtonProps}
       type={defaultButtonProps.type || 'button'}
-      className={`btn draw-border ${defaultButtonProps.className}`}
+      // className={`btn draw-border ${defaultButtonProps.className}`}
+      className={classnames(
+        styles.btn,
+        styles.drawBorder,
+        defaultButtonProps.className
+      )}
       disabled={defaultButtonProps.disabled}
     >
       {children}

@@ -50,7 +50,7 @@ function Register() {
             });
           }}
         >
-          Create Team
+          Create
         </HoverButton>
       </div>
     </form>

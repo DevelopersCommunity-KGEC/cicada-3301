@@ -76,7 +76,7 @@
   }
 }
 
-.draw-border {
+.drawBorder {
   @include btn-border-drawing(
     var(--clr-text-neutral),
     var(--clr-primary),

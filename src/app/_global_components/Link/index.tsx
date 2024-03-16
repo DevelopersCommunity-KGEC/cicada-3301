@@ -1,20 +1,26 @@
-import './styles.scss';
-
 import React from 'react';
 
+import classNames from 'classnames';
 import Link from 'next/link';
+
+import styles from './styles.module.scss';
 
 function HoverLink({
   children,
-  className,
   href,
+  ...defaultButtonProps
 }: {
   children: React.ReactNode;
-  className?: string;
   href: string;
-}) {
+} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className={`btn draw-border ${className}`}>
+    <button
+      className={classNames(
+        styles.btn,
+        styles.drawBorder,
+        defaultButtonProps.className
+      )}
+    >
       <Link href={href}>{children}</Link>
     </button>
   );
