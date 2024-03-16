@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { ResponseToken } from '@/app/_utils/types';
 import { LoginSchema } from '@/app/_validation_schema/api/user/userValidation';
 
 export const handleLogin = async (teamId: string, espektroId: string) => {
@@ -20,7 +21,7 @@ export const handleLogin = async (teamId: string, espektroId: string) => {
       teamId,
       espektroId,
     });
-    sessionStorage.setItem('authToken', response.data.authToken);
+    sessionStorage.setItem(ResponseToken.AUTH_TOKEN, response.data.authToken);
     if (response.status !== 200) {
       return {
         success: false,

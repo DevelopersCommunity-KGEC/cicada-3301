@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import HoverButton from '@/app/_global_components/HoverButton';
 import CustomInput from '@/app/_global_components/input';
 import HoverLink from '@/app/_global_components/Link';
+import { ResponseToken } from '@/app/_utils/types';
 
 import { handleLogin } from '../../_api/login';
 import styles from './styles.module.scss';
@@ -26,11 +27,16 @@ function Login({}) {
       type: success ? 'success' : 'error',
     });
 
+  useEffect(() => {
+    setTeamId(sessionStorage.getItem(ResponseToken.TEAM_ID) || '');
+  }, []);
+
   return (
     <form className={styles.loginForm} onSubmit={() => {}}>
       <div>
         <CustomInput
           placeholder="Team ID"
+          defaultValue={sessionStorage.getItem(ResponseToken.TEAM_ID) || ''}
           onChange={(e) => setTeamId(e.target.value)}
         />
         <CustomInput

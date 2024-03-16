@@ -41,7 +41,6 @@ export default function RootLayout({
           <ToastContainer
             autoClose={3000}
             position="bottom-right"
-            stacked
             closeOnClick
             transition={Slide}
             toastClassName={'toast-custom'}

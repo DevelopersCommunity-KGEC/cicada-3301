@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { ResponseToken } from '@/app/_utils/types';
 import { CreateTeamSchema } from '@/app/_validation_schema/api/user/userValidation';
 
 export const handleRegisterTeam = async (
@@ -28,9 +29,13 @@ export const handleRegisterTeam = async (
         message: 'Registration failed',
       };
     }
+
+    sessionStorage.setItem(ResponseToken.TEAM_ID, response.data.teamId);
+
     return {
       success: true,
       message: 'Team Registration successful',
+      teamId: response.data.teamId,
     };
   } catch (error) {
     return {

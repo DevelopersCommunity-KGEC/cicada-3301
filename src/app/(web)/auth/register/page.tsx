@@ -25,6 +25,18 @@ function Register() {
     toast(message, {
       type: success ? 'success' : 'error',
     });
+  const teamNotify = ({ teamId }: { teamId: string }) =>
+    toast(
+      <div>
+        <p className={styles.teamid__toast}>
+          Your Team ID: <span>{teamId}</span>
+        </p>
+      </div>,
+      {
+        type: 'info',
+        autoClose: 35000,
+      }
+    );
 
   return (
     <form className={styles.registerForm} onSubmit={() => {}}>
@@ -65,6 +77,7 @@ function Register() {
               formatedMembers
             );
             notify(response);
+            teamNotify({ teamId: response.teamId ?? '' });
             if (response.success) {
               router.push('/auth/login');
             }
