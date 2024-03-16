@@ -18,3 +18,7 @@
 @import 'utilities/text_size';
 @import 'utilities/font_weight';
 @import 'utilities/reset_button';
+
+body {
+  background-color: var(--clr-background);
+}
