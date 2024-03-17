@@ -34,3 +34,46 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Deploy on Amplify
+
+- You can directly deploy project from your Github in AWS Amplify ( making CI/CD pipeline)
+- You can have preview for your Pull Request to a branch
+- Custom Build Config (will be required for NextJS application)
+- Support for Environment Variables (is slightly different for NextJs applications)
+- Redeloy and Webhook support
+- Logs can be monitored from CloudWatch 
+  > Monitoring -> Hosting Compute Logs -> CloudWatch Logs Streams
+
+Environment Variable [setup](https://docs.aws.amazon.com/amplify/latest/userguide/environment-variables.html)
+
+Setting up environment variables for [next application](https://docs.aws.amazon.com/amplify/latest/userguide/ssr-environment-variables.html)
+
+Example Build Config for this Next App
+
+```
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - env | grep -e MONGODB_URI -e SECRET_KEY >> .env.production
+        - env | grep -e NEXT_PUBLIC_ >> .env.production
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*
+```
+
+
+
+
