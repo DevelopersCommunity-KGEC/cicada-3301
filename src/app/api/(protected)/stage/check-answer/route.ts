@@ -109,15 +109,22 @@ export async function POST(req: NextRequest) {
 
     // if not wrong answer
 
-    team.totalPointScored = team.totalPointScored + stage.points;
-    team.noOfStagesAttempted = team.noOfStagesAttempted + 1;
-    team.stages.push({
-      timeStamp: new Date(),
-      stageId: stage._id,
-    });
-    team.lastCompletedStage = stage._id;
+    // it will prevent the player from submitting the same stage again to score points
+    const attemptedStages =
+      team.stages.filter((_stage) => `${_stage.stageId}` === `${stage._id}`) ??
+      [];
 
-    await team.save();
+    if (attemptedStages.length === 0) {
+      team.totalPointScored = team.totalPointScored + stage.points;
+      team.noOfStagesAttempted = team.noOfStagesAttempted + 1;
+      team.stages.push({
+        timeStamp: new Date(),
+        stageId: stage._id,
+      });
+      team.lastCompletedStage = stage._id;
+
+      await team.save();
+    }
 
     const nextStage = await StageModel.findOne({
       stageId: stage.stageId + 1,

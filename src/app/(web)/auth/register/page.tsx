@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 import HoverButton from '@/app/_global_components/HoverButton';
 import CustomInput from '@/app/_global_components/input';
+import Loader from '@/app/_global_components/Loading';
 import { useCreateTeamContext } from '@/app/hooks/context/registerContext';
 
 import { handleRegisterTeam } from '../../_api/register';
@@ -13,6 +14,7 @@ import styles from './styles.module.scss';
 
 function Register() {
   const [memberIds, setMemberIds] = useState([1]);
+  const [loading, setLoading] = useState(false);
   const { setTeamName, teamName, members } = useCreateTeamContext();
   const router = useRouter();
   const notify = ({
@@ -38,8 +40,9 @@ function Register() {
       }
     );
 
+  if (loading) return <Loader />;
   return (
-    <form className={styles.registerForm} onSubmit={() => {}}>
+    <form className={styles.registerForm}>
       <div className={styles.teamNameContainer}>
         <CustomInput
           placeholder="Team Name"
@@ -57,7 +60,7 @@ function Register() {
             if (memberIds.length >= 3) return;
             setMemberIds((prev) => [...prev, prev.slice(-1)[0] + 1]);
           }}
-          disabled={memberIds.length >= 3}
+          disabled={memberIds.length >= 3 || loading}
         >
           Add Member
         </HoverButton>
@@ -65,6 +68,7 @@ function Register() {
           className={styles.button}
           onClick={async () => {
             // register team
+            setLoading(true);
             const formatedMembers = members.map((member) => {
               return {
                 name: member.name,
@@ -76,10 +80,12 @@ function Register() {
               teamName,
               formatedMembers
             );
-            notify(response);
-            teamNotify({ teamId: response.teamId ?? '' });
+            setLoading(false);
             if (response.success) {
+              teamNotify({ teamId: response.teamId });
               router.push('/auth/login');
+            } else {
+              notify(response);
             }
           }}
         >

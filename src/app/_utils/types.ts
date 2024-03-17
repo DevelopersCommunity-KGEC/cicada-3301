@@ -20,4 +20,10 @@ export const ResponseToken = {
   TEAM_ID: 'teamId',
 };
 
+export const GameStatus = {
+  NOT_STARTED: 'not_started',
+  STARTED: 'started',
+  ENDED: 'ended',
+};
+
 type StatusCodeType = ObjectValue<typeof StatusCode>;

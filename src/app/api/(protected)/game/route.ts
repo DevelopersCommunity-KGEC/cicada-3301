@@ -1,21 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import QuestionModel from '@/app/_model/question.model';
+import GameModel from '@/app/_model/game.model';
 import { StatusCode } from '@/app/_utils/types';
 import databaseConnect from '@/app/api/database';
 
 export async function POST(req: NextRequest) {
   try {
     await databaseConnect();
-    const question = new QuestionModel({
+    const body = await req.json();
+    const game = new GameModel({
       totalPoints: 0,
+      gameStartTime: body.startTime ?? new Date(),
+      gameEndTime: body.endTime ?? new Date(),
     });
-    const createdQuestion = await question.save();
+    const createdGame = await game.save();
 
     return NextResponse.json(
       {
         message: 'stage created successfully',
-        questionId: createdQuestion._id,
+        questionId: createdGame._id,
       },
       {
         status: StatusCode.CREATED,

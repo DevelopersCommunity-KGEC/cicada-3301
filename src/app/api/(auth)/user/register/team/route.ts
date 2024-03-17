@@ -28,6 +28,22 @@ export async function POST(req: NextRequest) {
         }
       );
     }
+
+    // finding whether this team name already exists
+    const teamExists = await TeamModel.findOne({ teamName: body.teamName });
+    if (teamExists) {
+      return NextResponse.json(
+        {
+          message: 'team name already exists',
+          teamId: -1,
+        },
+        {
+          status: StatusCode.BAD_REQUEST,
+          statusText: 'team name already exists',
+        }
+      );
+    }
+
     const generatedTeamId = generateUniqueString();
     const team = new TeamModel({
       teamName: body.teamName,
