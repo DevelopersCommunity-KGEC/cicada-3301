@@ -1,11 +1,14 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import gsap from 'gsap';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 import CicadaLogo from '@/app/_global_components/cicada';
 import Heading from '@/app/_global_components/heading';
 import HoverButton from '@/app/_global_components/HoverButton';
+import { ResponseToken } from '@/app/_utils/types';
 import { useGSAP } from '@gsap/react';
 
 import styles from './styles.module.scss';
@@ -22,6 +25,8 @@ const instructions = [
   'If you are ready, click the button below to begin.',
 ];
 function Instruction() {
+  const router = useRouter();
+  const [fetchingAuthToken, setFetchingAuthToken] = useState(true);
   useGSAP(() => {
     gsap.from('#instruction', {
       y: 25,
@@ -31,6 +36,19 @@ function Instruction() {
       ease: 'power3.inOut',
     });
   });
+  useEffect(() => {
+    const authToken = sessionStorage.getItem(ResponseToken.AUTH_TOKEN);
+    if (!authToken) {
+      toast('Please login to continue', {
+        type: 'warning',
+      });
+      router.push('/auth/login');
+    }
+    setFetchingAuthToken(false);
+  }, []);
+  if (fetchingAuthToken) {
+    return null;
+  }
   return (
     <div className={styles.instructionPage}>
       <div className={styles.logoContainer}>
