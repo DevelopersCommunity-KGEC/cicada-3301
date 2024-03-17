@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import QuestionModel from '@/app/_model/question.model';
+import GameModel from '@/app/_model/game.model';
 import StageModel from '@/app/_model/stage.model';
 import { StatusCode } from '@/app/_utils/types';
 import { CreateStageSchema } from '@/app/_validation_schema/api/stage/stageValidation';
@@ -22,15 +22,15 @@ export async function POST(req: NextRequest) {
         }
       );
     }
-    const { questionId, ...stageData } = body;
+    const { gameId, ...stageData } = body;
     const stage = new StageModel(stageData);
     const createdStage = await stage.save();
 
-    const question = await QuestionModel.findById(questionId);
-    if (!question) {
+    const game = await GameModel.findById(gameId);
+    if (!game) {
       return NextResponse.json(
         {
-          message: 'question not found',
+          message: 'game not found',
         },
         {
           status: StatusCode.NOT_FOUND,
@@ -39,9 +39,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    question.stages.push(createdStage._id);
-    question.totalPoints += createdStage.points;
-    await question.save();
+    game.stages.push(createdStage._id);
+    game.totalPoints += createdStage.points;
+    await game.save();
 
     return NextResponse.json(
       {
