@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { ResponseToken } from '@/app/_utils/types';
 import { CreateTeamSchema } from '@/app/_validation_schema/api/user/userValidation';
@@ -38,6 +38,20 @@ export const handleRegisterTeam = async (
       teamId: response.data.teamId,
     };
   } catch (error) {
+    if (error instanceof AxiosError) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.status === 400 &&
+        'teamId' in error.response.data &&
+        error.response.data.teamId === -1
+      ) {
+        return {
+          success: false,
+          message: 'Team name already exists',
+        };
+      }
+    }
     return {
       success: false,
       message: 'Something went wrong',
