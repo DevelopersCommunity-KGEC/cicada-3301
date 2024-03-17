@@ -1,0 +1,28 @@
+.stage {
+  padding-inline: 3rem;
+  display: flex;
+  flex-direction: column;
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      width: 20rem;
+    }
+  }
+  .footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 2rem 2rem 2rem;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--clr-background) 90%
+    );
+    display: flex;
+    justify-content: flex-end;
+  }
+}
