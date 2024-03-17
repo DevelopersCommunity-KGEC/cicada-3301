@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  min-height: 100dvh;
+  padding-block: 4rem;
   .logo {
     width: clamp(250px, 30vw, 350px);
   }

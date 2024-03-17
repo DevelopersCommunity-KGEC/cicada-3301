@@ -1,5 +1,6 @@
 .instructionPage {
-  height: 100%;
+  min-height: 100dvh;
+  padding-block: 4rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;

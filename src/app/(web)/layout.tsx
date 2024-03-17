@@ -24,19 +24,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={sourceCode.className}>
-        <main
-          style={{
-            width: '100dvw',
-            minHeight: '100dvh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: 'rgb(7 13 14)',
-            color: 'white',
-            paddingBlock: '6rem',
-          }}
-        >
+      <body
+        className={sourceCode.className}
+        style={{
+          background: 'rgb(7 13 14)',
+          color: 'white',
+          width: '100dvw',
+          overflowX: 'hidden',
+        }}
+      >
+        <main>
           <CreateTeamContextProvider>{children}</CreateTeamContextProvider>
           <ToastContainer
             autoClose={3000}
