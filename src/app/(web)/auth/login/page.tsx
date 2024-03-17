@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 import HoverButton from '@/app/_global_components/HoverButton';
 import CustomInput from '@/app/_global_components/input';
 import HoverLink from '@/app/_global_components/Link';
-import { ResponseToken } from '@/app/_utils/types';
 
 import { handleLogin } from '../../_api/login';
 import styles from './styles.module.scss';
@@ -28,15 +27,15 @@ function Login({}) {
     });
 
   useEffect(() => {
-    setTeamId(sessionStorage.getItem(ResponseToken.TEAM_ID) || '');
+    setTeamId(sessionStorage.getItem('teamId') || '');
   }, []);
 
   return (
-    <form className={styles.loginForm} onSubmit={() => {}}>
+    <form className={styles.loginForm}>
       <div>
         <CustomInput
+          defaultValue={teamId}
           placeholder="Team ID"
-          defaultValue={sessionStorage.getItem(ResponseToken.TEAM_ID) || ''}
           onChange={(e) => setTeamId(e.target.value)}
         />
         <CustomInput
