@@ -7,8 +7,9 @@ import { toast } from 'react-toastify';
 import CicadaLogo from '@/app/_global_components/cicada';
 import Heading from '@/app/_global_components/heading';
 import HoverButton from '@/app/_global_components/HoverButton';
-import { StatusCode } from '@/app/_utils/types';
+import { GameStatus, StatusCode } from '@/app/_utils/types';
 
+import { getGameStatus } from '../../_api/game';
 import { getQuestionById, submitAnswer } from '../../_api/question';
 import styles from './styles.module.scss';
 
@@ -28,13 +29,15 @@ function Stage({ params }: { params: { id: string } }) {
   const router = useRouter();
 
   useEffect(() => {
-    setLoading(true);
     const fetchQuestion = async () => {
+      setLoading(true);
+
       const { data, message, status, success } = await getQuestionById(
         +params.id
       );
 
       setLoading(false);
+
       if (success && status === 200) {
         const formattedData = data as ResponseProps;
         setStage({
@@ -55,7 +58,32 @@ function Stage({ params }: { params: { id: string } }) {
         });
       }
     };
-    fetchQuestion();
+
+    const getCurrentGameStatus = async () => {
+      const { gameStatus } = await getGameStatus();
+      if (gameStatus === GameStatus.STARTED) {
+        fetchQuestion();
+      } else if (gameStatus === -1) {
+        toast('Failed to get game status', {
+          type: 'error',
+        });
+        router.push('/instructions');
+        return;
+      } else if (gameStatus === GameStatus.NOT_STARTED) {
+        toast('Game not started yet', {
+          type: 'warning',
+        });
+        router.push('/instructions');
+        return;
+      } else if (gameStatus === GameStatus.ENDED) {
+        toast('Game ended', {
+          type: 'warning',
+        });
+        router.push('/instructions');
+        return;
+      }
+    };
+    getCurrentGameStatus();
   }, [params.id]);
   return (
     <section className={styles.stage}>
@@ -90,6 +118,22 @@ function Stage({ params }: { params: { id: string } }) {
           disabled={answer === '' || !stage}
           onClick={async () => {
             if (stage) {
+              // checking game status
+
+              const { gameStatus } = await getGameStatus();
+              if (
+                gameStatus === -1 ||
+                gameStatus === GameStatus.NOT_STARTED ||
+                gameStatus === GameStatus.ENDED
+              ) {
+                toast('Game is not active', {
+                  type: 'warning',
+                });
+                router.push('/instructions');
+                return;
+              }
+
+              // submitting answer
               const { success, message, status, data } = await submitAnswer(
                 answer,
                 stage._id
