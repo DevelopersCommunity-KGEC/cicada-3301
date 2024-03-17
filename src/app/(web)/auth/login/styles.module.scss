@@ -1,0 +1,15 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .button {
+      flex: 1;
+    }
+  }
+}

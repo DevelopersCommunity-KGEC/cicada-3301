@@ -25,22 +25,14 @@
   /**
    * TODO: Add light mode color palette in future
   */
-  --clr-background: #030303;
-  --clr-foreground: #141414;
-  --clr-primary: #97c896;
-  --clr-secondary: #015ae6;
+  --clr-background: #070d0e;
+  --clr-foreground: #1f2425;
+  --clr-toast: #212527;
+  --clr-primary: #49b7f7;
   --clr-text-neutral: #ffffff;
   --clr-text-primary: #cccccc;
-  --clr-text-secondary: #5a5c60;
-  --clr-action-warning: #bda900;
-  --clr-action-error: #b50038;
-  --clr-action-success: #009c42;
+  --clr-text-disabled: #5e6162;
 
-  /**
-   * Font Weights
-   * these are totally dependent on the tupe of font used from next/fonts
-   * currently I will be using Roboto
-   */
   --font-weight-100: 100;
   --font-weight-200: 200;
   --font-weight-300: 300;
@@ -51,27 +43,3 @@
   --font-weight-800: 800;
   --font-weight-900: 900;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --clr-background: #030303;
-    --clr-foreground: #141414;
-    --clr-primary: #97c896;
-    --clr-secondary: #015ae6;
-    --clr-text-neutral: #ffffff;
-    --clr-text-primary: #cccccc;
-    --clr-text-secondary: #5a5c60;
-    --clr-action-warning: #bda900;
-    --clr-action-error: #b50038;
-    --clr-action-success: #009c42;
-  }
-}
-
-/**
- * Support for light-dark in css
- * 
- * https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark
- * 
- * Light dark theme using SCSS map
- * 
- * https://stackoverflow.com/questions/57017955/is-there-a-way-to-add-dark-mode-to-my-application-with-scss
- */

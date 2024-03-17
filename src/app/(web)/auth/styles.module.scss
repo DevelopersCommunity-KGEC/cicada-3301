@@ -1,0 +1,14 @@
+.authLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 100dvh;
+  padding-block: 4rem;
+  .formContainer {
+    // border: 1px solid var(--clr-text-neutral);
+    width: clamp(260px, 70vw, 575px);
+    padding: clamp(20px, 3vw, 35px);
+  }
+}

@@ -1,0 +1,11 @@
+.heading {
+  font-family: 'Source Code Pro', monospace;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.heading1 {
+  font-size: clamp(1.65rem, 3vw, 3rem);
+}
+.heading2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}

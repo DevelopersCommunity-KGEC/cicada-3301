@@ -1,0 +1,43 @@
+.instructionPage {
+  min-height: 100dvh;
+  padding-block: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .instruction {
+    padding-inline: 3rem;
+    & > p {
+      color: var(--clr-text-primary);
+    }
+    & > p::before {
+      content: '$';
+      margin-right: 10px;
+      color: var(--clr-primary);
+    }
+    & > p:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 2rem 2rem 2rem;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--clr-background) 90%
+    );
+    display: flex;
+    justify-content: flex-end;
+  }
+}

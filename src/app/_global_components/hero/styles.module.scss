@@ -1,0 +1,24 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem;
+  min-height: 100dvh;
+  .heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--clr-text-neutral);
+    white-space: nowrap;
+    text-align: center;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+  }
+  .buttonContainer {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -18,3 +18,15 @@
 @import 'utilities/text_size';
 @import 'utilities/font_weight';
 @import 'utilities/reset_button';
+
+body {
+  background-color: var(--clr-background);
+}
+
+.toast-custom {
+  background: var(--clr-toast);
+  color: var(--clr-text-primary);
+}
+.toast-progress-custom {
+  background: var(--clr-primary);
+}

@@ -1,0 +1,41 @@
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .teamNameContainer {
+    padding-inline: 1.5rem;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .button {
+      flex: 1;
+    }
+  }
+}
+.memberForm {
+  border: 1px solid var(--clr-text-primary);
+  position: relative;
+  padding: 1.35rem;
+  padding-bottom: 0;
+  & > p {
+    position: absolute;
+    top: -15px;
+    left: 1.5rem;
+    background-color: var(--clr-background);
+    padding-inline: 15px;
+  }
+}
+
+.teamid__toast {
+  color: var(--clr-text-primary);
+  font-family: 'Source Code Pro', monospace;
+  & > span {
+    font-weight: 900;
+    color: var(--clr-primary);
+  }
+}

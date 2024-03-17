@@ -15,4 +15,9 @@ export const StatusCode = {
   SERVICE_UNAVAILABLE: 503,
 } as const;
 
+export const ResponseToken = {
+  AUTH_TOKEN: 'authToken',
+  TEAM_ID: 'teamId',
+};
+
 type StatusCodeType = ObjectValue<typeof StatusCode>;

@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
       teamName: body.teamName,
       teamId: generatedTeamId,
       members: body.members,
+      totalTokens: 10,
     });
     await team.save();
 
