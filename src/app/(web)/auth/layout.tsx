@@ -16,7 +16,7 @@ function AuthLayout({
   const pathname = usePathname();
   return (
     <div className={styles.authLayout}>
-      <CicadaLogo className={styles.logo} />
+      <CicadaLogo className={styles.logo} variant="small" />
       <div className={styles.formContainer}>
         <Heading variant="h1">
           {pathname === '/auth/login' ? 'Login' : 'Create Team'}

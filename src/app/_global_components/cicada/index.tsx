@@ -12,7 +12,13 @@ import { useGSAP } from '@gsap/react';
 
 import styles from './styles.module.scss';
 
-function CicadaLogo({ className }: { className?: string }) {
+function CicadaLogo({
+  className,
+  variant = 'default',
+}: {
+  className?: string;
+  variant?: 'small' | 'default';
+}) {
   const rotation = 2;
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -44,7 +50,13 @@ function CicadaLogo({ className }: { className?: string }) {
     );
   });
   return (
-    <div className={classnames(styles.cicadalogo, className)}>
+    <div
+      className={classnames(
+        styles.cicadalogo,
+        variant === 'small' ? styles.small : styles.large,
+        className
+      )}
+    >
       <div
         id="cicada-logo-left"
         className={classnames(styles.cicadalogo__left)}

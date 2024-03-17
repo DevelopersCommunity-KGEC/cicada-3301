@@ -1,6 +1,5 @@
 .cicadalogo {
   position: relative;
-  width: clamp(260px, 75vw, 520px);
   aspect-ratio: 2/ 1;
   &__left,
   &__body,
@@ -21,4 +20,12 @@
   &__right {
     transform: translateX(-3px) translateY(-2px);
   }
+}
+
+.large {
+  width: clamp(260px, 75vw, 520px);
+}
+
+.small {
+  width: clamp(200px, 60vw, 350px);
 }

@@ -34,7 +34,7 @@ function Instruction() {
   return (
     <div className={styles.instructionPage}>
       <div className={styles.logoContainer}>
-        <CicadaLogo />
+        <CicadaLogo variant="small" />
       </div>
       <Heading variant="h1">Instructions</Heading>
       <div className={styles.instruction}>
