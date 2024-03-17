@@ -8,9 +8,10 @@ import { toast } from 'react-toastify';
 import CicadaLogo from '@/app/_global_components/cicada';
 import Heading from '@/app/_global_components/heading';
 import HoverButton from '@/app/_global_components/HoverButton';
-import { ResponseToken } from '@/app/_utils/types';
+import { GameStatus, ResponseToken } from '@/app/_utils/types';
 import { useGSAP } from '@gsap/react';
 
+import { getGameStatus } from '../_api/game';
 import styles from './styles.module.scss';
 
 const instructions = [
@@ -27,15 +28,20 @@ const instructions = [
 function Instruction() {
   const router = useRouter();
   const [fetchingAuthToken, setFetchingAuthToken] = useState(true);
-  useGSAP(() => {
-    gsap.from('#instruction', {
-      y: 25,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.25,
-      ease: 'power3.inOut',
-    });
-  });
+  useGSAP(
+    () => {
+      gsap.from('#instruction', {
+        y: 25,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.25,
+        ease: 'power3.inOut',
+      });
+    },
+    {
+      dependencies: [fetchingAuthToken],
+    }
+  );
   useEffect(() => {
     const authToken = sessionStorage.getItem(ResponseToken.AUTH_TOKEN);
     if (!authToken) {
@@ -63,7 +69,33 @@ function Instruction() {
         ))}
       </div>
       <div className={styles.footer}>
-        <HoverButton>Play</HoverButton>
+        <HoverButton
+          onClick={async () => {
+            const status = await getGameStatus();
+            const { gameStatus } = status;
+            if (gameStatus === GameStatus.STARTED) {
+              router.push('/stage/1');
+            } else if (gameStatus === -1) {
+              toast('Failed to get game status', {
+                type: 'error',
+              });
+              return;
+            } else if (gameStatus === 1) {
+            } else if (gameStatus === GameStatus.NOT_STARTED) {
+              toast('Game not started yet', {
+                type: 'warning',
+              });
+              return;
+            } else if (gameStatus === GameStatus.ENDED) {
+              toast('Game ended', {
+                type: 'warning',
+              });
+              return;
+            }
+          }}
+        >
+          Play
+        </HoverButton>
       </div>
     </div>
   );
