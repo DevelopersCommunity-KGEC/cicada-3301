@@ -37,7 +37,7 @@ export default function RootLayout({
           <CreateTeamContextProvider>{children}</CreateTeamContextProvider>
           <ToastContainer
             autoClose={3000}
-            position="bottom-right"
+            position="top-right"
             closeOnClick
             transition={Slide}
             toastClassName={'toast-custom'}

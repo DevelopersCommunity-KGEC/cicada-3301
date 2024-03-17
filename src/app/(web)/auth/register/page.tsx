@@ -79,7 +79,7 @@ function Register() {
             notify(response);
             teamNotify({ teamId: response.teamId ?? '' });
             if (response.success) {
-              router.push('/instructions');
+              router.push('/auth/login');
             }
           }}
         >
