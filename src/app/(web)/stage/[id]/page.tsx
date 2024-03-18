@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import CicadaLogo from '@/app/_global_components/cicada';
 import Heading from '@/app/_global_components/heading';
 import HoverButton from '@/app/_global_components/HoverButton';
+import Loader from '@/app/_global_components/Loading';
 import { GameStatus, StatusCode } from '@/app/_utils/types';
 
 import { getGameStatus } from '../../_api/game';
@@ -17,6 +18,7 @@ interface StageProps {
   question: string;
   stageId: number;
   _id: string;
+  image: string;
 }
 interface ResponseProps {
   stage: StageProps;
@@ -44,6 +46,7 @@ function Stage({ params }: { params: { id: string } }) {
           question: formattedData.stage.question,
           stageId: formattedData.stage.stageId,
           _id: formattedData.stage._id,
+          image: formattedData.stage.image,
         });
       } else if (status === StatusCode.UNAUTHORIZED) {
         toast('Unauthorized access', {
@@ -85,6 +88,7 @@ function Stage({ params }: { params: { id: string } }) {
     };
     getCurrentGameStatus();
   }, [params.id]);
+
   return (
     <section className={styles.stage}>
       <div className={styles.logoContainer}>
@@ -92,11 +96,18 @@ function Stage({ params }: { params: { id: string } }) {
       </div>
 
       {!stage || loading ? (
-        <div className={styles.loading}>loading...</div>
+        <Loader text="Loading question..." />
       ) : (
         <>
           <Heading variant="h2" children={`Question ${stage.stageId}`} />
-
+          {stage.image && stage.image !== '' && (
+            <img
+              src={stage.image}
+              alt="question"
+              width={'300px'}
+              height={'300px'}
+            />
+          )}
           <p className={styles.question}>{stage.question}</p>
         </>
       )}

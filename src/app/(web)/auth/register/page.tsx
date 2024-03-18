@@ -40,7 +40,7 @@ function Register() {
       }
     );
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader text="Creating team..." />;
   return (
     <form className={styles.registerForm}>
       <div className={styles.teamNameContainer}>

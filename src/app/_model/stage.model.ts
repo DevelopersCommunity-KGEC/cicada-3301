@@ -6,6 +6,7 @@ interface IStage {
   points: number;
   hint: string;
   stageId: number;
+  image: string;
 }
 const stageSchema = new Schema<IStage>(
   {
@@ -22,6 +23,9 @@ const stageSchema = new Schema<IStage>(
       required: true,
     },
     hint: {
+      type: String,
+    },
+    image: {
       type: String,
     },
     stageId: {
