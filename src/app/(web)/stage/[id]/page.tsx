@@ -18,6 +18,7 @@ interface StageProps {
   question: string;
   stageId: number;
   _id: string;
+  image: string;
 }
 interface ResponseProps {
   stage: StageProps;
@@ -45,6 +46,7 @@ function Stage({ params }: { params: { id: string } }) {
           question: formattedData.stage.question,
           stageId: formattedData.stage.stageId,
           _id: formattedData.stage._id,
+          image: formattedData.stage.image,
         });
       } else if (status === StatusCode.UNAUTHORIZED) {
         toast('Unauthorized access', {
@@ -98,7 +100,14 @@ function Stage({ params }: { params: { id: string } }) {
       ) : (
         <>
           <Heading variant="h2" children={`Question ${stage.stageId}`} />
-
+          {stage.image && stage.image !== '' && (
+            <img
+              src={stage.image}
+              alt="question"
+              width={'300px'}
+              height={'300px'}
+            />
+          )}
           <p className={styles.question}>{stage.question}</p>
         </>
       )}
