@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import HoverButton from '@/app/_global_components/HoverButton';
 import CustomInput from '@/app/_global_components/input';
 import HoverLink from '@/app/_global_components/Link';
+import Loader from '@/app/_global_components/Loading';
 
 import { handleLogin } from '../../_api/login';
 import styles from './styles.module.scss';
@@ -15,6 +16,7 @@ function Login({}) {
   const [teamId, setTeamId] = useState('');
   const [espektroId, setEspektroId] = useState('');
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const notify = ({
     success,
     message,
@@ -30,6 +32,7 @@ function Login({}) {
     setTeamId(sessionStorage.getItem('teamId') || '');
   }, []);
 
+  if (loading) return <Loader text="Logging in..." />;
   return (
     <form className={styles.loginForm}>
       <div>
@@ -51,7 +54,9 @@ function Login({}) {
         <HoverButton
           className={styles.button}
           onClick={async () => {
+            setLoading(true);
             const res = await handleLogin(teamId, espektroId);
+            setLoading(false);
             notify(res);
             if (res.success) {
               router.push('/instructions');
