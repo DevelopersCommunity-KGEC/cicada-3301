@@ -1,0 +1,112 @@
+.leaderboard {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 4rem;
+
+  padding-inline: 3rem;
+  padding-bottom: 10rem;
+
+  table {
+    width: 100%;
+    thead {
+      //   background: rgba(64, 64, 64, 0.403);
+      //   clip-path: polygon(
+      //     5% 0,
+      //     95% 0,
+      //     100% 20%,
+      //     100% 80%,
+      //     95% 100%,
+      //     5% 100%,
+      //     0% 80%,
+      //     0% 20%
+      //   );
+      border: 2px solid var(--clr-text-primary);
+
+      tr {
+        th {
+          padding: 1rem 1.5rem;
+          font-weight: 400;
+          font-size: 1.4rem;
+        }
+        th:nth-child(1) {
+          width: 5%;
+        }
+        th:nth-child(2) {
+          width: 30%;
+        }
+
+        th:nth-child(3) {
+          width: 35%;
+        }
+        th:nth-child(4) {
+          width: 20%;
+        }
+        th:nth-child(4) {
+          width: 10%;
+        }
+      }
+    }
+    tbody {
+      tr {
+        color: rgb(146, 146, 146);
+        border-bottom: 0.5px solid var(--clr-text-disabled);
+        // clip-path: polygon(
+        //   5% 0,
+        //   95% 0,
+        //   100% 20%,
+        //   100% 80%,
+        //   95% 100%,
+        //   5% 100%,
+        //   0% 80%,
+        //   0% 20%
+        // );
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background: var(--clr-bg-primary);
+        }
+        td {
+          padding: 1.5rem;
+          text-align: center;
+          font-size: 1.2rem;
+        }
+      }
+
+      tr:nth-child(1) {
+        color: #ffd700;
+        td:nth-child(1) {
+          font-size: 1.75rem;
+          font-weight: 600;
+        }
+      }
+      tr:nth-child(2) {
+        color: #cfcece;
+        td:nth-child(1) {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+      tr:nth-child(3) {
+        color: #cd7f32;
+        td:nth-child(1) {
+          font-size: 1.35rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20vh;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--clr-background) 90%
+    );
+  }
+}
