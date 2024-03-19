@@ -11,22 +11,24 @@
   table {
     width: 100%;
     thead {
-      background: rgba(64, 64, 64, 0.403);
-      clip-path: polygon(
-        5% 0,
-        95% 0,
-        100% 20%,
-        100% 80%,
-        95% 100%,
-        5% 100%,
-        0% 80%,
-        0% 20%
-      );
+      //   background: rgba(64, 64, 64, 0.403);
+      //   clip-path: polygon(
+      //     5% 0,
+      //     95% 0,
+      //     100% 20%,
+      //     100% 80%,
+      //     95% 100%,
+      //     5% 100%,
+      //     0% 80%,
+      //     0% 20%
+      //   );
+      border: 2px solid var(--clr-text-primary);
 
       tr {
         th {
           padding: 1rem 1.5rem;
           font-weight: 400;
+          font-size: 1.4rem;
         }
         th:nth-child(1) {
           width: 5%;
@@ -50,16 +52,16 @@
       tr {
         color: rgb(146, 146, 146);
         border-bottom: 0.5px solid var(--clr-text-disabled);
-        clip-path: polygon(
-          5% 0,
-          95% 0,
-          100% 20%,
-          100% 80%,
-          95% 100%,
-          5% 100%,
-          0% 80%,
-          0% 20%
-        );
+        // clip-path: polygon(
+        //   5% 0,
+        //   95% 0,
+        //   100% 20%,
+        //   100% 80%,
+        //   95% 100%,
+        //   5% 100%,
+        //   0% 80%,
+        //   0% 20%
+        // );
         transition: all 0.3s ease-in-out;
 
         &:hover {

@@ -26,6 +26,7 @@ export async function GET() {
       .select([
         'totalPointScored',
         'teamName',
+        'members.name',
         'noOfStagesAttempted',
         'stages',
       ]);
@@ -49,6 +50,7 @@ export async function GET() {
       return {
         _id: t._id,
         teamName: t.teamName,
+        members: t.members,
         totalPointScored: t.totalPointScored,
         noOfStagesAttempted: t.noOfStagesAttempted,
       };
