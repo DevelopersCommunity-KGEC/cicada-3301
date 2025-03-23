@@ -11,12 +11,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const team = await TeamModel.findOne({
       teamId: body.teamId,
-      members: {
-        $elemMatch: {
-          espektroId: body.espektroId,
-        },
-      },
-    });
+   });
     if (!team) {
       return NextResponse.json(
         {
@@ -32,7 +27,6 @@ export async function POST(req: NextRequest) {
     const token = jwt.sign(
       {
         teamId: team.teamId,
-        espektroId: body.espektroId,
       },
       `${process.env.SECRET_KEY}`,
       {

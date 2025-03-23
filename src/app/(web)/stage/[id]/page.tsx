@@ -35,7 +35,7 @@ function Stage({ params }: { params: { id: string } }) {
       setLoading(true);
 
       const { data, message, status, success } = await getQuestionById(
-        +params.id
+        params.id
       );
 
       setLoading(false);
@@ -181,7 +181,7 @@ function Stage({ params }: { params: { id: string } }) {
                 if (data) {
                   // if there is tokens left meaning game = false (game over for player)
                   if (data.totalTokens <= 0) {
-                    router.push('/results');
+                    router.push('/instructions');
                   }
 
                   // if there is tokens left meaning game = true
@@ -193,7 +193,7 @@ function Stage({ params }: { params: { id: string } }) {
                       {data.totalTokens > 0 ? (
                         <p>Tokens left: {data.totalTokens}</p>
                       ) : (
-                        <p>No Tokens left</p>
+                        <p>No tokens left</p>
                       )}
                     </div>,
                     {

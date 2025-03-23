@@ -5,6 +5,7 @@ import TeamModel from '@/app/_model/team.model';
 import { StatusCode } from '@/app/_utils/types';
 import { CheckAnswerSchema } from '@/app/_validation_schema/api/stage/stageValidation';
 import databaseConnect from '@/app/api/database';
+import GameModel from '../../../../_model/game.model';
 
 export async function POST(req: NextRequest) {
   try {
@@ -126,11 +127,32 @@ export async function POST(req: NextRequest) {
       await team.save();
     }
 
-    const nextStage = await StageModel.findOne({
-      stageId: stage.stageId + 1,
-    });
+    const gameDetails = await GameModel.findOne();
+    // this should never happen
+    if(!gameDetails) {
+      return NextResponse.json(
+        {
+          message: 'No game found',
+          description: 'No game found',
+          totalTokens: team.totalTokens,
+          success: true,
+          nextStageId: -1,
+          nextStage: null,
+          game: false,
+        },
+        {
+          status: StatusCode.OK,
+          statusText: 'ok',
+        }
+      );
+    }
 
-    if (!nextStage) {
+    const currentStageIndex = gameDetails.stages.findIndex(_stage => _stage.equals(stage._id))
+
+    const hasNextStage = currentStageIndex < gameDetails.stages.length - 1;
+
+
+    if (!hasNextStage) {
       return NextResponse.json(
         {
           message: 'Correct answer',
@@ -154,8 +176,8 @@ export async function POST(req: NextRequest) {
         description: 'Points added to your team',
         totalTokens: team.totalTokens,
         success: true,
-        nextStageId: nextStage.stageId,
-        nextStage: nextStage._id,
+        nextStageId: gameDetails.stages[currentStageIndex + 1],
+        nextStage: gameDetails.stages[currentStageIndex + 1],
         game: true,
       },
       {

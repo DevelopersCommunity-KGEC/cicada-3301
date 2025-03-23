@@ -41,10 +41,6 @@ function Login({}) {
           placeholder="Team ID"
           onChange={(e) => setTeamId(e.target.value)}
         />
-        <CustomInput
-          placeholder="Espektro ID"
-          onChange={(e) => setEspektroId(e.target.value.toUpperCase())}
-        />
       </div>
 
       <div className={styles.buttonContainer}>

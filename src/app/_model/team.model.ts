@@ -2,7 +2,6 @@ import mongoose, { model, Model, Schema, Types } from 'mongoose';
 
 interface IMember {
   name: string;
-  espektroId: string;
   college: string;
 }
 interface IStage {
@@ -38,11 +37,7 @@ const teamSchema = new Schema<ITeam>(
           type: String,
           required: true,
         },
-        espektroId: {
-          type: String,
-          required: true,
-        },
-      },
+     },
     ],
     lastCompletedStage: {
       type: Types.ObjectId,

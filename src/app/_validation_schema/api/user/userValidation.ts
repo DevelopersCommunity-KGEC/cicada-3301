@@ -7,16 +7,13 @@ export const CreateTeamSchema = z.object({
   members: z.array(
     z.object({
       name: z.string().min(3).max(50),
-      espektroId: z.string().min(11).max(11),
     })
   ),
 });
 export const MemberSchema = z.object({
   name: z.string().min(3).max(50),
-  espektroId: z.string().min(5),
 });
 export const LoginSchema = z.object({
   teamId: z.string().min(6).max(6),
-  espektroId: z.string().min(5),
 });
 export type TeamProps = z.infer<typeof CreateTeamSchema>;

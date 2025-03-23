@@ -10,8 +10,8 @@ export async function GET(
 ) {
   try {
     await databaseConnect();
-    const stageId = +params.stageId;
-    const stage = await StageModel.findOne({ stageId }).select([
+    const stageId = params.stageId;
+    const stage = await StageModel.findById(stageId).select([
       'question',
       '_id',
       'stageId',

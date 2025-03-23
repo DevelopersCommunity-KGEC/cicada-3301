@@ -129,38 +129,7 @@ function MemberForm({ memberId }: { memberId: number }) {
           });
         }}
       />
-      <CustomInput
-        placeholder="Espektro ID"
-        onChange={(e) => {
-          setMembers((prev) => {
-            // if memberid doesn't exist, create a new member
-            const memberExists = prev.some(
-              (member) => member.memberId === memberId
-            );
-            if (memberExists) {
-              return prev.map((member) => {
-                if (member.memberId === memberId) {
-                  return {
-                    ...member,
-                    espektroId: e.target.value.toUpperCase(),
-                  };
-                }
-                return member;
-              });
-            } else {
-              return [
-                ...prev,
-                {
-                  memberId,
-                  name: '',
-                  espektroId: e.target.value.toUpperCase(),
-                },
-              ];
-            }
-          });
-        }}
-      />
-    </div>
+   </div>
   );
 }
 

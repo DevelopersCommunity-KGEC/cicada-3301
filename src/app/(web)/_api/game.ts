@@ -1,12 +1,24 @@
 import axios, { AxiosError } from 'axios';
 
-import { GameStatus } from '@/app/_utils/types';
+import { GameStatus, ResponseToken, StatusCode } from '@/app/_utils/types';
 
 export const getGameStatus = async () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
+  const authToken = sessionStorage.getItem(ResponseToken.AUTH_TOKEN);
+      if (!authToken) {
+      return {
+        success: false,
+        message: 'unauthorized access',
+        status: StatusCode.UNAUTHORIZED,
+        data: null,
+      };
+    }
   try {
-    const response = await axios.get(`${API_URL}/game/status`);
+    const response = await axios.get(`${API_URL}/game/status`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    });
     if (response.status !== 200) {
       return {
         success: false,
@@ -19,12 +31,14 @@ export const getGameStatus = async () => {
         success: true,
         message: 'Game started',
         gameStatus: GameStatus.STARTED,
+        nextStage: response.data.stage,
       };
     }
     return {
       success: true,
       message: 'Game status fetched successfully',
       gameStatus: 1,
+      nextStage: response.data.stage,
     };
   } catch (error) {
     if (error instanceof AxiosError) {

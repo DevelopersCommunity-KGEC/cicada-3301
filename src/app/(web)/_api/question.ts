@@ -20,7 +20,7 @@ type SubmitAnswerResponseDataProps =
     };
 
 export const getQuestionById = async (
-  stageId: number
+  stageId: string
 ): Promise<{
   success: boolean;
   message: string;
