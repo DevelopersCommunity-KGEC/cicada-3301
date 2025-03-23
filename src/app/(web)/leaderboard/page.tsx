@@ -37,11 +37,11 @@ function LeaderBoard() {
       <table>
         <thead>
           <tr>
-            <th>Position</th>
+            <th>Rank</th>
             <th>Team Name</th>
             <th>Team Members</th>
-            <th>Stages Solved</th>
-            <th>Points</th>
+            <th>Attempted</th>
+            <th>Score</th>
           </tr>
         </thead>
         <tbody>
