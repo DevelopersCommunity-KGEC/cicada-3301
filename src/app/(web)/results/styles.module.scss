@@ -1,0 +1,21 @@
+.resultsPage {
+    min-height: 100dvh;
+    padding-block: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+  
+    .logoContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .stats {
+        & > p {
+            margin-top: 1rem;
+         font-size: 1.5rem;
+        }
+    }
+}

@@ -12,7 +12,7 @@ const stageSchema = new Schema<IStage>(
   {
     question: {
       type: String,
-      required: true,
+      default: "",
     },
     answer: {
       type: Schema.Types.Mixed,
