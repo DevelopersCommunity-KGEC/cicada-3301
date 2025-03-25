@@ -18,7 +18,7 @@ const instructions = [
   "Welcome to Cicada 3301, a game of puzzles and riddles.",
   "You will be presented with some questions, each with a unique answer. There are multiple stages to the game.",
   "If you answer correctly, you will be awarded points and move on to the next question.",
-  "Your team has total 10 tokens through out the game. After one wrong answer will cost you one token. If you lose all 10 tokens, Your game will end.",
+  "Your team has total 15 tokens through out the game. After one wrong answer will cost you one token. If you lose all 15 tokens, Your game will end.",
   "Each stage will become progressively more difficult.",
   "Stage will have different point values based on difficulty.",
   "Leaderboard will be updated based on the points you earn.",
