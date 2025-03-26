@@ -12,5 +12,5 @@ export const CreateStageSchema = z.object({
 
 export const CheckAnswerSchema = z.object({
   id: z.string().min(3),
-  answer: z.union([z.string().min(3).max(200), z.number().int().positive()]),
+  answer: z.union([z.string().min(1).max(200), z.number().int().positive()]),
 });
